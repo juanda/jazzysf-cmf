@@ -1,0 +1,9 @@
+services:
+###phpcr Initialicer example
+#  jw_cmf.phpcr.initializer:
+#        class: Doctrine\Bundle\PHPCRBundle\Initializer\GenericInitializer
+#        arguments:
+#            - [ "/pages" ]
+#  #          - { "%acme.cnd%" }
+#        tags:
+#            - { name: "doctrine_phpcr.initializer" }

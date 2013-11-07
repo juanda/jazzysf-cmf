@@ -1,0 +1,23 @@
+{% extends 'JwCmfBundle::layout.html.twig' %}
+
+{% block title %}
+    {{ cmfMainContent.title }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ cmfMainContent.title }}</h1>
+
+    {{ cmfMainContent.body|raw }}
+    <br/>
+
+    <h2>Generación de rutas en distintos idiomas</h2>
+
+    <h3>en español</h3>
+    <pre>{ { path('', {'_locale': 'es', 'content_id': '/cms/content/hello-world'}) } }</pre>
+    {{ path('', {'_locale': 'es', 'content_id': '/cms/content/hello-world'}) }}
+    <br/>
+    <h3>en inglés</h3>
+    <pre>{ { path('', {'_locale': 'en', 'content_id': '/cms/content/hello-world'}) } }</pre>
+    {{ path('', {'_locale': 'en', 'content_id': '/cms/content/hello-world'}) }}
+
+{% endblock %}

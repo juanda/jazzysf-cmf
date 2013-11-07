@@ -1,0 +1,14 @@
+{% extends 'JwCmfBundle::layout.html.twig' %}
+
+{% block title -%}
+
+    {{ cmfMainContent.title }}
+{% endblock %}
+
+
+{% block content -%}
+    <h1>{{ cmfMainContent.title }}</h1>
+    <h2>JWSTATIC</h2>
+
+    {{ cmfMainContent.body|raw }}
+{% endblock %}
