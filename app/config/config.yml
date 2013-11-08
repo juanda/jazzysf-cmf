@@ -98,6 +98,14 @@ cmf_simple_cms:
 ###jazzysf-cmf
 cmf_routing:
     dynamic:
+        persistence:
+            phpcr:
+              # use true/false to force using / not using sonata admin
+              use_sonata_admin: auto
+
+              # used with Sonata Admin to manage content; defaults to %cmf_core.basepath%/content
+              content_basepath: ~
+
         templates_by_class:
             Jazzyweb\CmfBundle\Document\StaticContent: JwCmfBundle::jwstatic.html.twig
     chain:
@@ -131,6 +139,17 @@ sonata_block:
             contexts:   [admin]
 
 sonata_admin:
+    extensions:
+        cmf_core.admin_extension.translatable:
+            implements:
+                - Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface
+        cmf_menu.admin_extension.menu_node_referrers:
+            implements:
+                - Symfony\Cmf\Bundle\MenuBundle\Model\MenuNodeReferrersInterface
+        cmf_routing.admin_extension.route_referrers:
+            implements:
+                - Symfony\Cmf\Component\Routing\RouteReferrersInterface
+
     templates:
         # default global templates
         ajax:    SonataAdminBundle::ajax_layout.html.twig
@@ -153,12 +172,18 @@ sonata_doctrine_phpcr_admin:
         Symfony\Cmf\Bundle\ContentBundle\Doctrine\Phpcr\StaticContent:
             valid_children:
                 - all
+        Jazzyweb\CmfBundle\Document\StaticContent:
+            valid_children:
+                - all
         Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Phpcr\Route:
             valid_children:
                 - Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Phpcr\Route
                 - Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Phpcr\RedirectRoute
         Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Phpcr\RedirectRoute:
             valid_children: []
+        Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\Menu:
+                    valid_children:
+                        - Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\MenuNode
         Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\MenuNode:
             valid_children:
                 - Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\MenuNode

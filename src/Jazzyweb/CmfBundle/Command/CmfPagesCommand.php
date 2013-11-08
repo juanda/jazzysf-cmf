@@ -70,7 +70,7 @@ class CmfPagesCommand extends ContainerAwareCommand
         $contentHome->setTitle('Homepage');
         $contentHome->setBody('This is the homepage. In english, of course');
         $contentHome->setParent($contentRoot);
-        $contentHome->setName('hello-world');
+        $contentHome->setName('homepage');
 
         // las dos rutas asociadas a este contenido, una para inglés otra para español
         $contentHome->addRoute($routeHome_en);
@@ -81,7 +81,7 @@ class CmfPagesCommand extends ContainerAwareCommand
         $documentManager->bindTranslation($contentHome, 'en');
 
         // Añadimos la traducción del contenido en español
-        $contentHome->setTitle('Hola Mundo');
+        $contentHome->setTitle('Página de inicio');
         $contentHome->setBody('Esta es la página de inicio');
         $documentManager->bindTranslation($contentHome, 'es');
 
