@@ -85,6 +85,7 @@ cmf_core:
     multilang:
         locales: %locales%
 
+
 cmf_create:
     editor_base_path: /bundles/cmfcreate/vendor/ckeditor/
 
@@ -159,6 +160,27 @@ sonata_admin:
             # display a dashboard block
             - { position: right, type: sonata.admin.block.admin_list }
             - { position: left, type: sonata_admin_doctrine_phpcr.tree_block }
+        groups:
+            content:
+                label: Content
+                items:
+                    - cmf_content.admin
+                    - cmf_block.simple_admin
+                    - cmf_block.container_admin
+                    - cmf_block.reference_admin
+                    - cmf_block.action_admin
+                    - cmf_block.imagine.slideshow_admin
+                    - cmf_block.imagine.imagine_admin
+            routing:
+                label: URLs
+                items:
+                    - cmf_routing.route_admin
+                    - cmf_routing.redirect_route_admin
+            menu:
+                label: Menu
+                items:
+                    - cmf_menu.menu_admin
+                    - cmf_menu.node_admin
 
 sonata_doctrine_phpcr_admin:
     document_tree_defaults: [locale]
@@ -171,7 +193,33 @@ sonata_doctrine_phpcr_admin:
                 - all
         Symfony\Cmf\Bundle\ContentBundle\Doctrine\Phpcr\StaticContent:
             valid_children:
-                - all
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\RssBlock
+        Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock:
+            valid_children: []
+        Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock:
+            valid_children: []
+        Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock:
+            valid_children: []
+        Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock:
+            valid_children:
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock
+        Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock:
+            valid_children: []
+        Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\RssBlock:
+            valid_children: []
+        Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock:
+            valid_children:
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\RssBlock
         Jazzyweb\CmfBundle\Document\StaticContent:
             valid_children:
                 - all
